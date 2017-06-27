@@ -3,9 +3,10 @@
 
 #include "ImageData.h"
 
-class BlockMetricsCalculator {
+class BlockMetricsCalculator
+{
 public:
-  virtual void calculate_blockwise_merits(ImageData &imageData) = 0;
+    virtual void calculate_blockwise_merits(ImageData& imageData) = 0;
 };
 
 #endif // !BLOCK_METRICS_CALCULATOR_H

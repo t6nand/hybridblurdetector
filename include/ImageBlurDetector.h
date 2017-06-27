@@ -7,54 +7,58 @@
 class BlockMetricsCalculator;
 class GlobalMetricsCalculator;
 
-class ImageBlurDetector {
-  /**
-  * The delegate to individual block metrics calculator.
-  */
-  BlockMetricsCalculator *blockMetricsCalculator;
+class ImageBlurDetector
+{
+    /**
+     * The technique to use to compule individual blocks metrics.
+     */
+    StrategyType strategyType;
 
-  /**
-  * The delegate to global image metrics calculator.
-  */
-  GlobalMetricsCalculator *globalMetricsCalculator;
+    /**
+    * The delegate to individual block metrics calculator.
+    */
+    BlockMetricsCalculator* blockMetricsCalculator;
 
-  /**
-   * This function prints the global blur metrics calculated for an image.
-   */
-  void output_metadata(ImageData &imageData);
+    /**
+    * The delegate to global image metrics calculator.
+    */
+    GlobalMetricsCalculator* globalMetricsCalculator;
+
+    /**
+     * This function prints the global blur metrics calculated for an image.
+     */
+    void output_metadata(ImageData& imageData);
 
 public:
-  /**
-   * Default Constructor.
-   * Allocates necessary memory. If failure in memory exception, throws an
-   * error.
-   */
-  ImageBlurDetector();
 
-  /**
-  * Deallocates allocated memory.
-  */
-  ~ImageBlurDetector();
+    /**
+     * Default Constructor. 
+     * Allocates necessary memory. If failure in memory exception, throws an 
+     * error.
+     */
+    ImageBlurDetector();
 
-  /**
-  * The method computes image blur.
-  * @param imgFilePath The path to image file.
-  */
-  std::pair<int, double> computeImageBlur(char *imgFilePath);
+    /**
+    * Deallocates allocated memory.
+    */
+    ~ImageBlurDetector();
 
-  /**
-  * This function detect blur in image using Wavelet Transform
-  * @param imgFilePath The path to image file.
-  */
-  std::pair<int, float> detectBlurUsingWaveletTransform(char *imgFilePath);
+    /**
+     * This function allows user to set the strategy.
+     */
+    void setLocalBlurDetectionStrategy(StrategyType strategyType);
 
-  /**
-  * This method is used to make final judgement on blurriness in image using
-  * tunable Decision tree which can also be improved for accuracy and
-  * performance
-  * using various learning schemes.
-  */
-  int decideBlurInImage(char *imgFilePath);
+    /**
+    * The method computes image blur.
+    * @param imgFilePath The path to image file.
+    */
+    std::pair<int, double> computeImageBlur(char *imgFilePath);
+
+    /**
+    *This function detect blur in image using Wavelet Transform
+    *@param imgFilePath The path to image file.
+    */
+    std::pair<int, float> detectBlurUsingWaveletTransform(char *imgFilePath);
 };
 
 #endif // !IMAGE_BLUR_DETECTOR_H

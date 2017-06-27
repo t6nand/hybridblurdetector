@@ -12,95 +12,100 @@
 
 /**** GLOBAL MERITS ****/
 
-class RuleOfThird {
+class RuleOfThird{
 
 public:
-  int w;
-  int h;
-  double *weight;
 
-  RuleOfThird(int w, int h);
+    int w;
+    int h;
+    double *weight;
 
-  ~RuleOfThird();
+    RuleOfThird(int w, int h);
 
-  void rebuild_thirds_matrix();
+    ~RuleOfThird();
+
+    void rebuild_thirds_matrix();
 };
 
-class FiguresOfMerit {
+class FiguresOfMerit
+{
 public:
-  double composition; /* sharpness weighted by rule of thirds */
-  double brightness_idx;
-  double saturation_idx;
-  double density;
-  double median_sharpness;
+    double composition;  /* sharpness weighted by rule of thirds */
+    double brightness_idx;
+    double saturation_idx;
+    double density;
+    double median_sharpness;
 };
 
 /**** LOCAL MERITS *****/
 
-class BlockMetrics {
+class BlockMetrics
+{
 public:
-  /* Mean of sharpness along row and column */
-  double sharpness;
+    /* Mean of sharpness along row and column */
+    double sharpness;
 
-  /* Variance of sharpness samples */
-  double reflectivity;
+    /* Variance of sharpness samples */
+    double reflectivity;
 
-  /* Mean Hue of the block */
-  double mean_hue;
+    /* Mean Hue of the block */
+    double mean_hue;
 
-  /* Mean Saturation of the block */
-  double mean_saturation;
+    /* Mean Saturation of the block */
+    double mean_saturation;
 
-  /* Mean Intensity of the block */
-  double brightness;
+    /* Mean Intensity of the block */
+    double brightness;
 
-  /* Ratio of sky pixels in a block to total pixels in the block */
-  double sky_ratio;
+    /* Ratio of sky pixels in a block to total pixels in the block */
+    double sky_ratio;
 
-  bool uniform; // Same intensity throughout the block
+    bool uniform;  // Same intensity throughout the block
 
-  BlockMetrics();
+    BlockMetrics();
 };
 
 /**** Image Data *****/
 
-class ImageData {
-  // The original input image
-  cv::Mat inputImage;
+class ImageData
+{
+    // The original input image
+    cv::Mat inputImage;
 
-  // This function calculate HSI and sky ratio of each image block.
-  void calculateBlockMeans();
+    // This function calculate HSI and sky ratio of each image block.
+    void calculateBlockMeans();
 
 public:
-  // The ROI to be processed
-  cv::Mat image;
 
-  // Width and Height of image in Blocks
-  int imageWidthInBlocks, imageHeightInBlocks;
+    // The ROI to be processed
+    cv::Mat image;
 
-  // Total number of blocks
-  int numOfBlocks;
+    // Width and Height of image in Blocks
+    int imageWidthInBlocks, imageHeightInBlocks;
 
-  // The block metrics for individual metrics
-  BlockMetrics *blocks;
+    // Total number of blocks
+    int numOfBlocks;
 
-  // The HSV transformation of image
-  std::vector<cv::Mat> hsiChannels;
+    // The block metrics for individual metrics
+    BlockMetrics *blocks;
 
-  // RuleOfThird Object
-  RuleOfThird *thirds;
+    // The HSV transformation of image
+    std::vector<cv::Mat> hsiChannels;
 
-  // Figures of merit of the image
-  FiguresOfMerit merit;
+    // RuleOfThird Object
+    RuleOfThird* thirds;
 
-  // The final classification output value
-  int decision;
+    // Figures of merit of the image
+    FiguresOfMerit merit;
 
-  // ToDo: Replace filename type to string and validate it
-  ImageData(char *fileName);
+    // The final classification output value
+    int decision;
 
-  // ToDo: Will it deallocate the memory if allocation throws exception
-  ~ImageData();
+    // ToDo: Replace filename type to string and validate it
+    ImageData(char* fileName);
+
+    // ToDo: Will it deallocate the memory if allocation throws exception
+    ~ImageData();
 };
 
 #endif // !IMAGE_DATA_H

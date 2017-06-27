@@ -2,9 +2,10 @@
 #define GLOBAL_METRICS_CALCULATOR_H
 #include "ImageData.h"
 
-class GlobalMetricsCalculator {
+class GlobalMetricsCalculator
+{
 public:
-  void compute_global_merits(ImageData &image);
+    void compute_global_merits(ImageData& image);
 };
 
 #endif // !GLOBAL_METRICS_CALCULATOR_H
