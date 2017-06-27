@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
     }
     printf("Decision From IIR Filter: %d,\nConfidence of Blur from IIR Filter: "
            "%f,\nDecision from HAAR Wavelet Transform: %d,\nConfidence of Blur "
-           "from HAAR Wavelet Transform: %f,\nBlur Decision: %d",
+           "from HAAR Wavelet Transform: %f,\nBlur Decision: %d\n",
            blurDecisionFromDecisionTree.first,
            blurDecisionFromDecisionTree.second,
            blurDecisionFromWaveletTransform.first,
