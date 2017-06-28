@@ -68,9 +68,9 @@ int main(int argc, char **argv) {
         blurDecisionFromWaveletTransform.first == 1) {
       finalDecision = 1;
     }
-    printf("Decision From IIR Filter: %d,\nConfidence of Blur from IIR Filter: "
-           "%f,\nDecision from HAAR Wavelet Transform: %d,\nConfidence of Blur "
-           "from HAAR Wavelet Transform: %f,\nBlur Decision: %d\n",
+    printf("From Decision Tree: %d, Confidence from Decision Tree: %f, From "
+           "Wavelet Transform: %d, Confidence from wavelet transform: %f, "
+           "Is_Blurred: %d",
            blurDecisionFromDecisionTree.first,
            blurDecisionFromDecisionTree.second,
            blurDecisionFromWaveletTransform.first,
